@@ -9,13 +9,17 @@ services:
                 LB_PORT: "8081"
                 SELF_LOC: "http://site:8080/"
         container_name: site
+        deploy:
+            restart_policy:
+                condition: any
         depends_on:
             - load_balancer
         env_file: ./site.env
         expose:
             - "8080"
         healthcheck:
-            test: ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:8080"]
+            test:
+                ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:8080"]
             interval: 1m
             timeout: 10s
             retries: 3
@@ -35,6 +39,8 @@ services:
             - load_balancer
         deploy:
             replicas: ${ADMIN_REPLICAS}
+            restart_policy:
+                condition: any
         env_file: ./admin_bot.env
         healthcheck:
             test: ["CMD", "timeout", "10s", "node", "/app/dest/healthcheck.js"]
@@ -55,8 +61,12 @@ services:
         env_file: ./load_balancer.env
         expose:
             - "8081"
+        deploy:
+            restart_policy:
+                condition: any
         healthcheck:
-            test: ["CMD", "timeout", "10s", "nc", "-w", "0", "127.0.0.1", "8081"]
+            test:
+                ["CMD", "timeout", "10s", "nc", "-w", "0", "127.0.0.1", "8081"]
             interval: 1m
             timeout: 10s
             retries: 3

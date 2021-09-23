@@ -325,6 +325,7 @@ app.post("/report/:noteid", async function (req, res) {
             id: req.params.noteid,
             error: "Missing RECAPTCHA. Is Javascript enabled?",
         });
+        return;
     }
     if (RECAPTCHA_KEYS) {
         const validation = (await fetch(
@@ -346,6 +347,7 @@ app.post("/report/:noteid", async function (req, res) {
                 id: req.params.noteid,
                 error: "Invalid RECAPTCHA. Try submitting again?",
             });
+            return;
         }
     }
     const visitRes = await sendAndReceive(
