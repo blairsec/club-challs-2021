@@ -1,0 +1,37 @@
+<h1>
+    H4ck3rN0t3s
+</h1>
+<form method="POST" action="/note" class="centered">
+    {{#if error}}
+        <p class="error-msg">
+            {{error}}
+        </p>
+    {{/if}}
+    <textarea placeholder="note contents" name="content" id="content">{{text}}</textarea>
+    <div class="line">
+        <span>
+            Note type:
+        </span>
+        <select name="type" id="sel-type">
+            {{#each levels}}
+                <option value="{{lookup this 0}}">
+                    {{lookup this 1}}
+                </option>
+            {{/each}}
+        </select>
+    </div>
+    <input type="submit" value="create note" />
+    <p>
+        Notes:
+    </p>
+    {{#each notes}}
+        <p>
+            <a href="/notes/{{this.id}}">{{this.typename}} - {{this.time}}</a> <a class="report" href="/report/{{this.id}}">(report)</a> <a href="javascript:void(0)" data-id="{{this.id}}" data-type="{{this.type}}" class="copy">(copy)</a>
+        </p>
+    {{else}}
+        <p>
+            make a note to get started
+        </p>
+    {{/each}}
+</form>
+<script src="copying.js"></script>

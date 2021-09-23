@@ -1,0 +1,10 @@
+[package]
+name = "load_balancer"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+
+[dependencies.tokio]
+version = "1.11.0"
+features = ["full"]

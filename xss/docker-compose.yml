@@ -1,0 +1,66 @@
+version: "3.9"
+services:
+    site:
+        build:
+            context: ./site
+            args:
+                PORT: "8080"
+                LB_HOST: load_balancer
+                LB_PORT: "8081"
+                SELF_LOC: "http://site:8080/"
+        container_name: site
+        depends_on:
+            - load_balancer
+        env_file: ./site.env
+        expose:
+            - "8080"
+        healthcheck:
+            test: ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:8080"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        ports:
+            - "${WEB_PORT}:8080"
+        stop_grace_period: 3s
+
+    admin_bot:
+        build:
+            context: ./admin_bot
+            args:
+                SOCKDIR: "/tmp/socks/"
+                LB_HOST: load_balancer
+                LB_PORT: "8081"
+        depends_on:
+            - load_balancer
+        deploy:
+            replicas: ${ADMIN_REPLICAS}
+        env_file: ./admin_bot.env
+        healthcheck:
+            test: ["CMD", "timeout", "10s", "node", "/app/dest/healthcheck.js"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        stop_grace_period: 3s
+        volumes:
+            - /tmp/dockersharedsocks:/tmp/socks
+
+    load_balancer:
+        build:
+            context: ./load_balancer
+            args:
+                PORT: "8081"
+        container_name: load_balancer
+        env_file: ./load_balancer.env
+        expose:
+            - "8081"
+        healthcheck:
+            test: ["CMD", "timeout", "10s", "nc", "-w", "0", "127.0.0.1", "8081"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        stop_grace_period: 3s
+        volumes:
+            - /tmp/dockersharedsocks:/tmp/socks
