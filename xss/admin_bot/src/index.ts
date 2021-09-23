@@ -17,9 +17,11 @@ async function main() {
         const page = await context.newPage();
         await page.setCookie(...cookies);
         await page.goto(url);
-        await page.waitForNetworkIdle({
-            timeout: 5000,
-        });
+        try {
+            await page.waitForNetworkIdle({
+                timeout: 5000,
+            });
+        } catch (err) {}
         await page.close();
         await context.close();
     }
