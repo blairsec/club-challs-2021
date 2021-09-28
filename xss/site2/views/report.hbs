@@ -1,0 +1,35 @@
+<h1>
+    <a href="/">
+        H4ck3rN0t3s
+    </a>
+</h1>
+<p>
+    <a href="/notes/{{id}}">
+        link to note {{id}}
+    </a>
+</p>
+{{#if error}}
+    <p class="error-msg">{{error}}</p>
+{{/if}}
+<form id="report-form" method="POST" action="/report/{{id}}" class="centered">
+    {{#if recaptcha}}
+        <button
+            class="g-recaptcha"
+            data-sitekey="{{recaptcha.site}}"
+            data-callback="onSubmit"
+            data-action="submit"
+        >
+            report this note
+        </button>
+    {{else}}
+        <input type="submit" value="report this note" />
+    {{/if}}
+</form>
+{{#if recaptcha}}
+    <script>
+        function onSubmit(token) {
+            document.getElementById("report-form").submit();
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+{{/if}}

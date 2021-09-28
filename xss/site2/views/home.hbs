@@ -1,0 +1,26 @@
+<h1>
+    H4ck3rS1t3s
+</h1>
+<p><a href="https://github.com/blairsec/club-challs-2021/blob/master/xss/site2/src/index.ts" target="_blank">(source)</a> <a href="/flag" target="_blank">(super secret flag for admins)</a></p>
+<form method="POST" action="/site" class="centered">
+    {{#if error}}
+        <p class="error-msg">
+            {{error}}
+        </p>
+    {{/if}}
+    <textarea placeholder="site content" name="content" id="content">{{text}}</textarea>
+    <input type="submit" value="create site" />
+    <p>
+        Sites:
+    </p>
+    {{#each sites}}
+        <p>
+            <a href="/sites/{{this.id}}">site - {{this.time}}</a> <a class="report" href="/report/{{this.id}}">(report)</a> <a href="javascript:void(0)" data-id="{{this.id}}" class="copy">(copy)</a>
+        </p>
+    {{else}}
+        <p>
+            make a site to get started
+        </p>
+    {{/each}}
+</form>
+<script src="copying.js"></script>

@@ -78,8 +78,9 @@ async function main() {
                 sendMsg({
                     type: "VISIT_RESULT",
                     value: false,
+                    error: (err as Error).message
                 });
-            }
+            } 
         }
     }
 

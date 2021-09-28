@@ -429,7 +429,7 @@ app.listen(PORT, () => {
     }
     if (RECAPTCHA_KEYS) {
         console.log(
-            `Using RECAPTCHA site key "${RECAPTCHA_KEYS.site}" and "${RECAPTCHA_KEYS.secret}".`
+            `Using RECAPTCHA site key "${RECAPTCHA_KEYS.site}" and secret key "${RECAPTCHA_KEYS.secret}".`
         );
     } else {
         console.log("RECAPTCHA disabled.");
