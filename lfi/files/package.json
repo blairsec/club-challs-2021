@@ -1,0 +1,24 @@
+{
+    "name": "lfi",
+    "version": "1.0.0",
+    "description": "Flag 2: flag{y0u_f0und_th3_p4ck4ge_bu7_c4n_y0u_g3t_th3_s0urc3}",
+    "main": "myprogram.js",
+    "scripts": {
+        "test": "echo \"all the 0 tests passed\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://nunya.business"
+    },
+    "keywords": [
+        "lfi"
+    ],
+    "author": "blairsec",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "express": "^4.17.1",
+        "highlight.js": "^10.3.1",
+        "morgan": "^1.10.0",
+        "cookie-parser": "^1.4.5"
+    }
+}

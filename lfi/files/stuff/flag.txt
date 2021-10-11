@@ -1,0 +1,6 @@
+Flag 1: flag{up_up_4nd_4w4y}
+
+This is a node.js project. What file is in every node.js project?
+If you can't find it, try going up another directory or two.
+
+Your goal is to use this file to leak the full source code.
