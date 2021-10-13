@@ -1,0 +1,127 @@
+@import url('/normalize.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    --bg: #d1bee7;
+    --fg: #000000;
+    --error: #ab000d;
+    --bad: #ef9a9a;
+    --bad-shade: #ef5350;
+    --accent: #fff176;
+    --accent-shade: #fdd835;
+    --offset: 5px;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+h1 {
+    font-size: 36px;
+}
+
+p, input, td, th, button {
+    font-size: 24px;
+    text-align: center;
+}
+
+p, h1, input, td, th, button {
+    font-family: "JetBrains Mono", monospace;
+    color: var(--fg);
+}
+
+.smaller {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.centered {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error {
+    color: var(--error);
+}
+
+input {
+    margin-bottom: 5px;
+}
+
+form {
+    width: 100%;
+}
+
+button.bad {
+    --accent: var(--bad);
+    --accent-shade: var(--bad-shade);
+}
+
+input[type=submit], button {
+    border: none;
+    background-color: var(--accent);
+    box-shadow: calc(var(--offset) * -1) var(--offset) var(--accent-shade);
+    cursor: pointer;
+    transition-property: background-color, box-shadow, transform;
+    transition-duration: 0.2s;
+    height: calc(1em + 10px);
+}
+
+input[type=submit]:hover, button:hover {
+    background-color: var(--accent-shade);
+    transform: translate(calc(var(--offset) * -1), var(--offset));
+    box-shadow: none;
+}
+
+input[type=text], input[type=password] {
+    background-color: #00000010;
+    border: none;
+    width: 50%;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    padding: 5px 0;
+    outline: none;
+}
+
+input[type=text]:hover, input[type=password]:hover, input[type=text]:focus, input[type=password]:focus {
+    background-color: #00000030;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+}
+
+.search :not(:last-child) {
+    margin-right: 30px;
+}
+
+.search input[type=text] {
+    flex-grow: 1;
+}
+
+td {
+    white-space: nowrap;
+    max-width: 500px;
+    height: calc(1em + 10px);
+    overflow-x: auto;
+}
+
+td:first-of-type, th:first-of-type {
+    text-align: right;
+    padding-right: 10px;
+}
+
+td:first-of-type::after, th:first-of-type::after {
+    content: " = ";
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td:last-of-type, th:last-of-type {
+    text-align: left;
+}

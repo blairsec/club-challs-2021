@@ -1,8 +1,9 @@
+<h1>🚀 factoringdb 🚀</h1>
 {{#if error}}
-    <p>{{error}}</p>
+    <p class="error">🚀 {{error}} 🚀</p>
 {{/if}}
-<form method="POST" action="/login">
-    <input type="text" name="username" placeholder="🚀 username 🚀"/>
-    <input type="password" name="password" placeholder="🚀 password 🚀"/>
+<form method="POST" action="/login" class="centered">
+    <input type="text" name="username" placeholder="🚀 username 🚀" autocomplete="off"/>
+    <input type="password" name="password" placeholder="🚀 password 🚀" autocomplete="off"/>
     <input type="submit" value="🚀 log in 🚀"/>
 </form>
