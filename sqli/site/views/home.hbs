@@ -1,0 +1,13 @@
+<h1>🚀 factoringdb 🚀</h1>
+{{#if error}}
+    <p class="error">{{error}}</p>
+{{/if}}
+<form method="GET" action="/">
+    <input type="text" name="q" placeholder="search query"/>
+    <input type="submit" value="search"/>
+</form>
+<p>
+    {{#each factors}}
+        {{this.number}}: {{this.factors}}
+    {{/each}}
+</p>
