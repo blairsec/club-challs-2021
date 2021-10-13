@@ -107,6 +107,7 @@ td {
     max-width: 500px;
     height: calc(1em + 10px);
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 td:first-of-type, th:first-of-type {
