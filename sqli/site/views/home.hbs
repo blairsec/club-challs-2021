@@ -1,13 +1,26 @@
 <h1>🚀 factoringdb 🚀</h1>
 {{#if error}}
-    <p class="error">{{error}}</p>
+    <p class="error">🚀 {{error}} 🚀</p>
 {{/if}}
-<form method="GET" action="/">
-    <input type="text" name="q" placeholder="search query"/>
-    <input type="submit" value="search"/>
+<form method="GET" action="/" class="search">
+    <input type="text" name="q" placeholder="🚀 search 🚀"/>
+    <input type="submit" value="🚀 factor 🚀"/>
+    <button class="bad" type="button" onclick="location.href='/logout'">🚀 logout 🚀</button>
 </form>
-<p>
+<table>
+    <colgroup>
+        <col/>
+        <col/>
+    </colgroup>
+    <tr>
+        <th>🚀 number</th>
+        <th>factors 🚀</th>
+    </tr>
     {{#each factors}}
-        {{this.number}}: {{this.factors}}
+        <tr>
+            <td>🚀 {{this.number}}</td>
+            <td>{{this.factors}} 🚀</td>
+        </tr>
     {{/each}}
-</p>
+</table>
+
