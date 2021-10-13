@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+    site:
+        build:
+            context: ./site
+            args:
+                PORT: "8080"
+        container_name: blairsec2021_sqli_site
+        deploy:
+            restart_policy:
+                condition: any
+        env_file: ./site.env
+        expose:
+            - "8080"
+        healthcheck:
+            test:
+                ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:8080"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        ports:
+            - "${WEB_PORT}:8080"
+        stop_grace_period: 3s
