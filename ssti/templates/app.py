@@ -17,3 +17,7 @@ def add_template():
     with open(template_dir + name + ".j2", "w") as f:
         f.write(content)
     return name
+
+@app.route("/")
+def index():
+    return "you have reached the local template site"

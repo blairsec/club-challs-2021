@@ -54,3 +54,7 @@ pre code {
     width: 750px;
     overflow-x: auto;
 }
+
+a {
+    color: var(--fg);
+}

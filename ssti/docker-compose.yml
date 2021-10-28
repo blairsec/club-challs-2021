@@ -5,7 +5,7 @@ services:
             context: ./site
             args:
                 PORT: "8080"
-                TEMPLATE_SITE: "http://blairsec2021_ssti_templates:8080/"
+                TEMPLATE_SITE: "http://template.site:8080/"
         container_name: blairsec2021_ssti_site
         deploy:
             restart_policy:
@@ -51,6 +51,10 @@ services:
             timeout: 10s
             retries: 3
             start_period: 30s
+        networks:
+            default:
+                aliases:
+                    - template.site
         stop_grace_period: 3s
         volumes:
             - type: volume
