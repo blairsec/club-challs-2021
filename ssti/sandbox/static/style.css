@@ -38,6 +38,7 @@ textarea, button {
 textarea {
     display: block;
     min-width: 750px;
+    min-height: 200px;
 }
 
 button {
