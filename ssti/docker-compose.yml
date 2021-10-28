@@ -30,6 +30,7 @@ services:
             - type: volume
               source: templates
               target: /app/templates/uploaded
+              read_only: true
     
     templates:
         build:
