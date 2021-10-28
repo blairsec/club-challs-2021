@@ -1,0 +1,11 @@
+FROM python:3.8
+
+WORKDIR /app
+COPY . /app/
+
+ARG EXPIRATION=3600
+ENV EXPIRATION=${EXPIRATION}
+ARG CLEANUP_DIR=/cleanup
+ENV CLEANUP_DIR=${CLEANUP_DIR}
+
+CMD ["python", "/app/cleanup.py"]
