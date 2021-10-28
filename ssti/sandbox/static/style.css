@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Zen+Antique&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Zen+Antique&display=swap");
 
 :root {
     --bg: #e3f2fd;
@@ -20,7 +20,7 @@ h1 {
 p,
 textarea,
 button {
-    font-family: "Roboto", sans-serif;
+    font-family: "JetBrains Mono", monospace;
     font-size: 24px;
     color: var(--fg);
 }
