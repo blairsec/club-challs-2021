@@ -21,6 +21,7 @@ p,
 textarea,
 button {
     font-family: "JetBrains Mono", monospace;
+    font-variant-ligatures: none;
     font-size: 24px;
     color: var(--fg);
 }
