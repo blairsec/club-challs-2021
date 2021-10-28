@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site of Sites</title>
     <script defer src="/static/main.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <p>Template site available locally at <code>{{template_site}}</code>.</p>
+    <h1>Site of Sites</h1>
+    <p>Template site available locally at <code id="turl">{{template_site}}</code>.</p>
     <input type="text" placeholder="site to ping" id="pingt">
     <button id="ping">ping</button>
+    <br><br>
     <input type="text" placeholder="site content" id="uploadt">
     <button id="upload">upload</button>
     <p id="result"></p>

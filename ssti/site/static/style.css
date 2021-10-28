@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Zen+Antique&display=swap");
+
+:root {
+    --bg: #e3f2fd;
+    --bg-shade: #80deea;
+    --accent: #e1bee7;
+    --fg: #283593;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+h1 {
+    font-family: "Zen Antique", serif;
+    font-size: 48px;
+    color: var(--fg);
+}
+
+p,
+input,
+button {
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    color: var(--fg);
+}
+
+input, button {
+    background-color: var(--accent);
+    border: 2px solid var(--fg);
+    border-radius: 10px;
+    padding: 5px;
+    height: 30px;
+    box-sizing: content-box;
+}
+
+button {
+    background-color: var(--bg-shade);
+    cursor: pointer;
+}
+
+code {
+    background-color: var(--bg-shade);
+    border-radius: 10px;
+    padding: 3px;
+}
+
+#turl {
+    cursor: pointer;
+}
+
+pre code {
+    display: block;
+    width: 750px;
+}
