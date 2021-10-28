@@ -5,7 +5,7 @@ services:
             context: ./site
             args:
                 PORT: "8080"
-                TEMPLATE_SITE: "http://template.site:8080/"
+                TEMPLATE_SITE: "http://template.site/"
         container_name: blairsec2021_ssti_site
         deploy:
             restart_policy:
@@ -35,7 +35,7 @@ services:
         build:
             context: ./templates
             args:
-                PORT: "8080"
+                PORT: "80"
                 TEMPLATE_DIR: "./templates/"
         container_name: blairsec2021_ssti_templates
         deploy:
@@ -43,10 +43,10 @@ services:
                 condition: always
         env_file: ./templates.env
         expose:
-            - "8080"
+            - "80"
         healthcheck:
             test:
-                ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:8080"]
+                ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:80"]
             interval: 1m
             timeout: 10s
             retries: 3
