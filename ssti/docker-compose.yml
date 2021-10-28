@@ -1,0 +1,78 @@
+version: "3.9"
+services:
+    site:
+        build:
+            context: ./site
+            args:
+                PORT: "8080"
+                TEMPLATE_SITE: "http://blairsec2021_ssti_templates:8080/"
+        container_name: blairsec2021_ssti_site
+        deploy:
+            restart_policy:
+                condition: always
+        env_file: ./site.env
+        expose:
+            - "8080"
+        healthcheck:
+            test:
+                ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:8080"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        ports:
+            - "${WEB_PORT}:8080"
+        read_only: true
+        stop_grace_period: 3s
+        tmpfs:
+            - /tmp
+        volumes:
+            - type: volume
+              source: templates
+              target: /app/templates/uploaded
+    
+    templates:
+        build:
+            context: ./templates
+            args:
+                PORT: "8080"
+                TEMPLATE_DIR: "./templates/"
+        container_name: blairsec2021_ssti_templates
+        deploy:
+            restart_policy:
+                condition: always
+        env_file: ./templates.env
+        expose:
+            - "8080"
+        healthcheck:
+            test:
+                ["CMD", "timeout", "10s", "curl", "-f", "http://localhost:8080"]
+            interval: 1m
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        stop_grace_period: 3s
+        volumes:
+            - type: volume
+              source: templates
+              target: /app/templates
+
+    cleanup:
+        build:
+            context: ./cleanup
+            args:
+                EXPIRATION: "3600"
+                CLEANUP_DIR: "/cleanup"
+        container_name: blairsec2021_ssti_cleanup
+        deploy:
+            restart_policy:
+                condition: always
+        stop_grace_period: 3s
+        volumes:
+            - type: volume
+              source: templates
+              target: /cleanup
+
+volumes:
+    templates:
+        name: blairsec2021_ssti_templates

@@ -8,7 +8,7 @@ services:
         container_name: blairsec2021_sqli_site
         deploy:
             restart_policy:
-                condition: any
+                condition: always
         env_file: ./site.env
         expose:
             - "8080"

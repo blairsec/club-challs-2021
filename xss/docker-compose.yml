@@ -11,7 +11,7 @@ services:
         container_name: blairsec2021_xss_site
         deploy:
             restart_policy:
-                condition: any
+                condition: always
         depends_on:
             - load_balancer
         env_file: ./site.env
@@ -33,13 +33,13 @@ services:
             context: ./site2
             args:
                 PORT: "8080"
-                LB_HOST: load_balancer
+                LB_HOST: blairsec2021_xss_load_balancer
                 LB_PORT: "8081"
                 SELF_LOC: "http://blairsec2021_xss_site2:8080/"
         container_name: blairsec2021_xss_site2
         deploy:
             restart_policy:
-                condition: any
+                condition: always
         depends_on:
             - load_balancer
         env_file: ./site2.env
@@ -61,14 +61,14 @@ services:
             context: ./admin_bot
             args:
                 SOCKDIR: "/tmp/socks/"
-                LB_HOST: load_balancer
+                LB_HOST: blairsec2021_xss_load_balancer
                 LB_PORT: "8081"
         depends_on:
             - load_balancer
         deploy:
             replicas: ${ADMIN_REPLICAS}
             restart_policy:
-                condition: any
+                condition: always
         env_file: ./admin_bot.env
         healthcheck:
             test: ["CMD", "timeout", "10s", "node", "/app/dest/healthcheck.js"]
@@ -85,13 +85,13 @@ services:
             context: ./load_balancer
             args:
                 PORT: "8081"
-        container_name: load_balancer
+        container_name: blairsec2021_xss_load_balancer
         env_file: ./load_balancer.env
         expose:
             - "8081"
         deploy:
             restart_policy:
-                condition: any
+                condition: always
         healthcheck:
             test:
                 ["CMD", "timeout", "10s", "nc", "-w", "0", "127.0.0.1", "8081"]
